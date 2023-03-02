@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q  # работа с поисковыми запросами в Django
-from .models import Car, Order
+from .models import Car, Order, FeedbackMsg
 from .filters import CarFilter
+from .forms import CarForm, OrderForm, FeedbackForm
 # Create your views here.
 
 
@@ -38,7 +39,13 @@ def car_list(request):
 
 
 def create_order(request):
-    return render(request, "create_order.html", {"title": "Create order"})
+    form = OrderForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+    return render(request, "create_order.html", {"title": "Create order",
+                                                 "form": form})
 
 
 def order_detail(request, order_id=None):
@@ -46,10 +53,21 @@ def order_detail(request, order_id=None):
     return render(request, "order_detail.html", {"detail": detail})
 
 
+def order_update(request, order_id=None):
+    detail = get_object_or_404(Order, order_id=order_id)
+    form = OrderForm(request.POST or None, instance=detail)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+    return render(request, "order_update.html", {"form": form,
+                                                 "title": "Update order info"})
+
+
 def order_delete(request, order_id=None):
     query = get_object_or_404(Order, order_id=order_id)
     query.delete()
-    return ''
+    return redirect('home')
 
 
 def car_detail(request, brand, car_id=None):
@@ -59,8 +77,12 @@ def car_detail(request, brand, car_id=None):
 
 def car_edit(request, car_id=None):
     query = get_object_or_404(Car, car_id=car_id)
-    # TODO: здесь форма изменения машины
-    return render(request, "car_edit.html", {"title": "Update car info"})
+    form = CarForm(request.POST or None, instance=query)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+    return render(request, "car_edit.html", {"form": form, "title": "Update car info"})
 
 
 def car_delete(request, car_id=None):
@@ -72,11 +94,33 @@ def car_delete(request, car_id=None):
 
 def new_car(request):
     new = Car.objects.order_by('-id')
+    query = request.GET.get('q')
+    if query:
+        new = new.filter(
+            Q(car_name__icontains=query),
+            Q(company_name__icontains=query),
+            Q(cost_per_day__icontains=query),
+            Q(num_of_seats__icontains=query)
+        )
+    paginator = Paginator(new, 12)
+    page = request.GET.get('page')
+    try:
+        new = paginator.page(page)
+    except PageNotAnInteger:
+        new = paginator.page(1)
+    except EmptyPage:
+        new = paginator.page(paginator.num_pages)
     return render(request, "new_car.html", {"car": new})
 
 
 def contacts(request):
-    return render(request, "contacts.html",  {"title": "Contact with us"})
+    form = FeedbackForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return redirect('contacts')
+    return render(request, "contacts.html",  {"title": "Contact with us",
+                                              "form": form})
 
 
 def like_update(request, car_id=None):

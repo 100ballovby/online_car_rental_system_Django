@@ -1,5 +1,5 @@
 from django import forms
-from .models import Car, Order
+from .models import Car, Order, FeedbackMsg
 
 
 class CarForm(forms.ModelForm):
@@ -28,3 +28,7 @@ class OrderForm(forms.ModelForm):
         ]
 
 
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = FeedbackMsg
+        fields = '__all__'

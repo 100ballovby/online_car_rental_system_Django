@@ -78,3 +78,9 @@ class Order(models.Model):
     def get_absolute_url(self):
         return f'/car/detail/{self.id}'
 
+
+class FeedbackMsg(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    message = tinymce_models.HTMLField(max_length=7000, blank=True, null=True, db_index=True)
+
