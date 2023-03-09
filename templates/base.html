@@ -1,106 +1,67 @@
-{% load static %} <!-- загружаем статик файлы -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %} Car Rental System {% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Montserrat:wght@100;300;400;600&display=swap"
-          rel="stylesheet">
-
-    <!-- custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}?v=1">
-    <!-- добавляем "версию" к CSS и теперь файлы будут обновляться при каждой загрузке-->
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>{% block title %} Car rental system {% endblock %}</title>
+    <meta content="" name="description"/>
+    <meta content="" name="keywords"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <link rel="stylesheet" href="{% static 'assets/css/master.css' %}"/>
+    <!-- SWITCHER-->
+    <link href="{% static 'assets/plugins/switcher/css/switcher.css' %}" rel="stylesheet" id="switcher-css"/>
+    <link href="{% static 'assets/plugins/switcher/css/color1.css' %}" rel="alternate stylesheet" title="color1"/>
+    <link href="{% static 'assets/plugins/switcher/css/color2.css' %}" rel="alternate stylesheet" title="color2"/>
+    <link href="{% static 'assets/plugins/switcher/css/color3.css' %}" rel="alternate stylesheet" title="color3"/>
+    <link href="{% static 'assets/plugins/switcher/css/color4.css' %}" rel="alternate stylesheet" title="color4"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 </head>
+
 <body>
 
-<header>
-    <div class="px-3 py-2 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <li>
-                        <a href="#" class="nav-link text-secondary">
-                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                <use xlink:href="#home"></use>
-                            </svg>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                <use xlink:href="#speedometer2"></use>
-                            </svg>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                <use xlink:href="#table"></use>
-                            </svg>
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                <use xlink:href="#grid"></use>
-                            </svg>
-                            Products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                <use xlink:href="#people-circle"></use>
-                            </svg>
-                            Customers
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="px-3 py-2 border-bottom mb-3">
-        <div class="container d-flex flex-wrap justify-content-center">
-            <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
-
-            <div class="text-end">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
-                {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-light text-dark me-2">Login</a>
-                    <a href="{% url 'register' %}" class="btn btn-primary">Sign up</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</header>
-
-<div class="container">
-    {% block content %}
-    {% endblock %}
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-        crossorigin="anonymous"></script>
+<!-- ++++++++++++-->
+<!-- MAIN SCRIPTS-->
+<!-- ++++++++++++-->
+<script src="{% static 'assets/libs/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-migrate-1.2.1.js' %}"></script>
+<!-- Bootstrap-->
+<script src="{% static 'assets/libs/bootstrap/bootstrap.min.js' %}"></script>
+<!-- User customization-->
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<!-- Headers scripts-->
+<script src="{% static 'assets/plugins/headers/slidebar.js' %}"></script>
+<script src="{% static 'assets/plugins/headers/header.js' %}"></script>
+<!-- Color scheme-->
+<script src="{% static 'assets/plugins/switcher/js/dmss.js' %}"></script>
+<!-- Select customization & Color scheme-->
+<script src="{% static 'assets/plugins/bootstrap-select/js/bootstrap-select.min.js' %}"></script>
+<!-- Slider-->
+<script src="{% static 'assets/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+<!-- Pop-up window-->
+<script src="{% static 'assets/plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+<!-- Mail scripts-->
+<script src="{% static 'assets/plugins/jqBootstrapValidation.js' %}"></script>
+<script src="{% static 'assets/plugins/contact_me.js' %}"></script>
+<!-- Filter and sorting images-->
+<script src="{% static 'assets/plugins/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/plugins/isotope/imagesLoaded.js' %}"></script>
+<!-- Progress numbers-->
+<script src="{% static 'assets/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+<script src="{% static 'assets/plugins/rendro-easy-pie-chart/waypoints.min.js' %}"></script>
+<!-- NoUiSlider-->
+<script src="{% static 'assets/plugins/noUiSlider/nouislider.min.js' %}"></script>
+<script src="{% static 'assets/plugins/noUiSlider/wNumb.js' %}"></script>
+<!-- Animations-->
+<script src="{% static 'assets/plugins/scrollreveal/scrollreveal.min.js' %}"></script>
+<!-- Main slider-->
+<script src="{% static 'assets/plugins/slider-pro/jquery.sliderPro.min.js' %}"></script>
+<!-- User map-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqQ_bBw186KJnMcRByvn5ffZueg88wp1E"></script>
+<!-- Maps customization-->
+<script src="{% static 'assets/js/map-custom.js' %}"></script>
 </body>
+
 </html>
