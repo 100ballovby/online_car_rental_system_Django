@@ -15,6 +15,7 @@
                              data-show-duration="2000" data-show-delay="1200" data-hide-delay="400">
                             <div class="main-slider__title">{{ slide.heading }}</div>
                             <!-- <div class="main-slider__subtitle">smart drive</div> -->
+                            <div>{{ slide.text|safe }}</div>
                             <a class="main-slider__btn btn btn-primary btn-lg"
                                href="{{ slide.url }}">Read more</a>
                         </div>
