@@ -5,11 +5,17 @@ from django.db.models import Q  # работа с поисковыми запр�
 from .models import Car, Order, FeedbackMsg
 from .filters import CarFilter
 from .forms import CarForm, OrderForm, FeedbackForm
+from promo.models import PromoBlock
+from datetime import datetime
 # Create your views here.
 
 
 def home(request):
-    return render(request, "home.html", {'title': "Car rental | Minsk"})
+    now = datetime.now()
+    slider_data = PromoBlock.objects.filter(active_from__lte=now,
+                                            active_to__gte=now).order_by('position')
+    return render(request, "home.html", {'title': "Car rental | Minsk",
+                                         'slider': slider_data})
 
 
 def car_list(request):
