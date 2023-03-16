@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ocrs.apps.OcrsConfig',
     'accounts.apps.AccountsConfig',
+    'promo.apps.PromoConfig',
     #'django_filters',
     'crispy_forms',
     'crispy_bootstrap5',
