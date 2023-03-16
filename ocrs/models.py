@@ -48,6 +48,8 @@ class Car(models.Model):
     content = tinymce_models.HTMLField(max_length=7000, blank=True, null=True, db_index=True)
     like = models.IntegerField(default=0)
 
+    # TODO: book status
+
     class Meta:
         verbose_name = "Машину"
         verbose_name_plural = "Машины"
