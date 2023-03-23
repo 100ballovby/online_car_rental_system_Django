@@ -4,9 +4,9 @@ from .models import Car, Order, Brands
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ("car_name", "cost_per_day", "image",)
+    list_display = ("car_name", "cost_per_day", "image", "booked",)
     list_editable = ("cost_per_day",)
-    list_filter = ("cost_per_day",)
+    list_filter = ("cost_per_day", "booked",)
 
 
 class OrderAdmin(admin.ModelAdmin):

@@ -41,7 +41,9 @@ def car_list(request):
         cars = paginator.page(1)  # перенесем его на первую страницу с машинами
     except EmptyPage:  # если пользователь вписал номер страницы, например, 9999999
         cars = paginator.page(paginator.num_pages)  # перемещаем его на последнюю страницу с машинами
-    return render(request, "car_list.html", {'cars': cars, 'filter': cars_filter})
+    return render(request, "car_list.html", {'title': 'Cars for rent',
+                                             'cars': cars,
+                                             'filter': cars_filter})
 
 
 def create_order(request):

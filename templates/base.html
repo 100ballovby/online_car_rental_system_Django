@@ -28,27 +28,21 @@
 
 <!-- MOBILE MENU-->
 <div data-off-canvas="mobile-slidebar left overlay">
-    <a class="navbar-brand scroll" href="home.html">
-        <img class="normal-logo img-resonsive visible-xs visible-sm" src="../../static/assets/media/general/logo.png"
-             alt="logo"/>
-        <img class="scroll-logo img-resonsive hidden-xs hidden-sm" src="../../static/assets/media/general/logo-dark.png"
-             alt="logo"/>
+    <a class="navbar-brand scroll" href="{% url 'home' %}">
+        <img class="normal-logo img-resonsive visible-xs visible-sm" src="{% static 'assets/media/general/logo.png' %}"
+             alt="logo"/> <!-- мобильный и планшетный логотип -->
+        <img class="scroll-logo img-resonsive hidden-xs hidden-sm" src="{% static 'assets/media/general/logo-dark.png' %}"
+             alt="logo"/> <!-- десктоп логотип -->
     </a>
     <ul class="nav navbar-nav">
         <li>
             <h4><a href="">Mobile sidebar</a></h4>
         </li>
-        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="home.html" tabindex="-1">Home one page</a>
-                </li>
-                <li><a href="home-2.html" tabindex="-1">Home standart</a>
-                </li>
-            </ul>
+        <li><a href="{% url 'home' %}">Home<b class="caret"></b></a>
         </li>
         <li><a href="repair-shop.html">Repair Shop</a>
         </li>
-        <li><a href="car-rental.html">Car Rental</a>
+        <li><a href="{% url 'car_list' %}">Car Rental</a>
         </li>
         <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Listings<b
                 class="caret"></b></a>

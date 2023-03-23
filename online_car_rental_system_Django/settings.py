@@ -140,3 +140,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR,
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# tinyMCE settings
+TINYMCE_DEFAULT_CONFIG = {
+    "height": "60vh",
+    "width": "100%",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
+    "fullscreen insertdatetime media table paste code help wordcount spellchecker",
+    "toolbar": "undo redo | bold italic underline strikethrough forecolor backcolor removeformat| fontselect fontsizeselect formatselect | image media link anchor | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist  | code | "
+    " casechange permanentpen formatpainter | pagebreak | charmap emoticons | "
+    "fullscreen  preview save print | insertfile pageembed template codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment ",
+    "custom_undo_redo_levels": 20,  # сколько шагов в кнопках "отменить" и "повторить" будет запоминаться
+    "language": "en_US",  # To force a specific language instead of the Django current language.
+    "skin": "oxide-dark",
+}
+
+

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+    {% if slider %}
     <div class="main-slider main-slider-1">
-        <div class="slider-pro" id="main-slider" data-slider-width="100%" data-slider-height="700px"
+        <div class="slider-pro" id="main-slider" data-slider-width="100%" data-slider-height="85vh"
              data-slider-arrows="true" data-slider-buttons="false">
             <div class="sp-slides">
                 <!-- Slides -->
@@ -24,5 +24,6 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
 {% endblock %}
