@@ -19,7 +19,7 @@ def home(request):
 
 
 def car_list(request):
-    cars = Car.objects.all()
+    cars = Car.objects.order_by('-booked')
 
     cars_filter = CarFilter(request.GET, queryset=cars)  # фильтровать список cars формой с методом get
     cars = cars_filter.qs
