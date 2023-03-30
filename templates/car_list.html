@@ -35,7 +35,7 @@
             <div class="col-md-9 col-md-push-3">
                 <main class="l-main-content">
                     <div class="filter-goods">
-                        <div class="filter-goods__info">Showing results from<strong> 1 - 10</strong> of total<strong> 35</strong>
+                        <div class="filter-goods__info">Showing results from<strong> 1 - 10</strong> of total<strong> {{ cars|length }}</strong>
                         </div>
                         <div class="filter-goods__select"><span class="hidden-xs">Sort</span>
                             <select class="selectpicker" data-width="172">
@@ -61,23 +61,10 @@
                                     <div class="b-goods-1__header"><a class="b-goods-1__choose hidden-th" href="{% url 'like' car_id=car.id %}"><i class="icon fa fa-heart-o"> {{ car.like }}</i></a>
                                         <h2 class="b-goods-1__name"><a href="{% url 'car_detail' name=car.car_name  %}">{{ car.company_name }} {{ car.car_name }}</a></h2>
                                     </div>
-                                    <div class="b-goods-1__info">Duis aute irure reprehender voluptate velit esacium fugiat nula pariatur excepteurd magna aliqua ut enim ad minim veniam quis nostrud Lorem ipsum dolor sit amet con sectetur adipisicing elit sed do eiusmod tempor
-                                        incididunt<span class="b-goods-1__info-more collapse" id="info-1"> lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit aut rerum numquam hic eum, aperiam fuga, pariatur repellendus. Incidunt corporis iusto illo nesciunt soluta optio eius aliquam. Similique, laborum dicta!</span>
-                                        <span
-                                        class="b-goods-1__info-link" data-toggle="collapse" data-target="#info-1"></span>
-                                    </div><span class="b-goods-1__price_th text-primary visible-th">$45,000<span class="b-goods-1__price-msrp">MSRP $27,000</span><a class="b-goods-1__choose" href="listing-1.html"><i class="icon fa fa-heart-o"></i></a>
+                                    <div class="b-goods-1__info">{{ car.content }}</div>
+                                    <span class="b-goods-1__price_th text-primary visible-th">${{ car.cost_per_day }}/day</span>
                                     </span>
-                                    <div class="b-goods-1__section">
-                                        <h3 class="b-goods-1__title" data-toggle="collapse" data-target="#desc-1">Highlights</h3>
-                                        <div class="collapse in" id="desc-1">
-                                            <ul class="b-goods-1__desc list-unstyled">
-                                                <li class="b-goods-1__desc-item">35,000 mi</li>
-                                                <li class="b-goods-1__desc-item"><span class="hidden-th">Model:</span> 2017</li>
-                                                <li class="b-goods-1__desc-item">Auto</li>
-                                                <li class="b-goods-1__desc-item hidden-th">320 hp</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
                                     <div class="b-goods-1__section hidden-th">
                                         <h3 class="b-goods-1__title" data-toggle="collapse" data-target="#list-1">specifications</h3>
                                         <div class="collapse in" id="list-1">
