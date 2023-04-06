@@ -3,16 +3,16 @@
 
 {% block content %}
     <div class="section-title-page area-bg area-bg_dark area-bg_op_70">
-                <div class="area-bg__inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <h1 class="b-title-page bg-primary_a">{{ title }}</h1>
-                            </div>
-                        </div>
+        <div class="area-bg__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="b-title-page bg-primary_a">{{ title }}</h1>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
     <div class="bg-grey">
         <div class="container">
@@ -35,7 +35,8 @@
             <div class="col-md-9 col-md-push-3">
                 <main class="l-main-content">
                     <div class="filter-goods">
-                        <div class="filter-goods__info">Showing results from<strong> 1 - 10</strong> of total<strong> {{ cars|length }}</strong>
+                        <div class="filter-goods__info">Showing results from<strong> 1 - 10</strong> of
+                            total<strong> {{ cars|length }}</strong>
                         </div>
                         <div class="filter-goods__select"><span class="hidden-xs">Sort</span>
                             <select class="selectpicker" data-width="172">
@@ -43,46 +44,83 @@
                                 <option>A-Z</option>
                                 <option>Z-A</option>
                             </select>
-                            <div class="btns-switch"><i class="btns-switch__item js-view-th active icon fa fa-th-large"></i><i class="btns-switch__item js-view-list icon fa fa-th-list"></i>
+                            <div class="btns-switch"><i
+                                    class="btns-switch__item js-view-th active icon fa fa-th-large"></i><i
+                                    class="btns-switch__item js-view-list icon fa fa-th-list"></i>
                             </div>
                         </div>
                     </div>
                     <!-- end .filter-goods-->
                     <div class="goods-group-2 list-goods list-goods_th">
                         {% for car in cars %}
-                        <section class="b-goods-1 b-goods-1_mod-a">
-                            <div class="row">
-                                <div class="b-goods-1__img">
-                                    <a class="js-zoom-images" href="{{ car.image.url }}">
-                                        <img class="img-responsive" src="{{ car.image.url }}" alt="foto" />
-                                    </a><span class="b-goods-1__price hidden-th">${{ car.cost_per_day }}/day</span>
-                                </div>
-                                <div class="b-goods-1__inner">
-                                    <div class="b-goods-1__header"><a class="b-goods-1__choose hidden-th" href="{% url 'like' car_id=car.id %}"><i class="icon fa fa-heart-o"> {{ car.like }}</i></a>
-                                        <h2 class="b-goods-1__name"><a href="{% url 'car_detail' name=car.car_name  %}">{{ car.company_name }} {{ car.car_name }}</a></h2>
+                            <section class="b-goods-1 b-goods-1_mod-a">
+                                <div class="row">
+                                    <div class="b-goods-1__img">
+                                        <a class="js-zoom-images" href="{{ car.image.url }}">
+                                            <img class="img-responsive" src="{{ car.image.url }}" alt="foto"/>
+                                        </a><span class="b-goods-1__price hidden-th">${{ car.cost_per_day }}/day</span>
                                     </div>
-                                    <div class="b-goods-1__info">{{ car.content }}</div>
-                                    <span class="b-goods-1__price_th text-primary visible-th">${{ car.cost_per_day }}/day</span>
-                                    </span>
+                                    <div class="b-goods-1__inner">
+                                        <div class="b-goods-1__header"><a class="b-goods-1__choose hidden-th"
+                                                                          href="{% url 'like' car_id=car.id %}"><i
+                                                class="icon fa fa-heart-o"> {{ car.like }}</i></a>
+                                            <h2 class="b-goods-1__name"><a
+                                                    href="{% url 'car_detail' name=car.car_name %}">{{ car.company_name }} {{ car.car_name }}</a>
+                                            </h2>
+                                        </div>
+                                        <div class="b-goods-1__info">{{ car.content }}</div>
+                                        <span class="b-goods-1__price_th text-primary visible-th">${{ car.cost_per_day }}/day</span>
+                                        </span>
 
-                                    <div class="b-goods-1__section hidden-th">
-                                        <h3 class="b-goods-1__title" data-toggle="collapse" data-target="#list-1">specifications</h3>
-                                        <div class="collapse in" id="list-1">
-                                            <ul class="b-goods-1__list list list-mark-5">
-                                                <li class="b-goods-1__list-item">Engine DOHC 24-valve V-6</li>
-                                                <li class="b-goods-1__list-item">Audio Controls on Steering Wheel</li>
-                                                <li class="b-goods-1__list-item">Power Windows</li>
-                                                <li class="b-goods-1__list-item">Daytime Running Lights</li>
-                                                <li class="b-goods-1__list-item">Cruise Control, ABS</li>
-                                            </ul>
+                                        <div class="b-goods-1__section hidden-th">
+                                            <h3 class="b-goods-1__title" data-toggle="collapse" data-target="#list-1">
+                                                specifications</h3>
+                                            <div class="collapse in" id="list-1">
+                                                <ul class="b-goods-1__list list list-mark-5">
+                                                    <li class="b-goods-1__list-item">Engine DOHC 24-valve V-6</li>
+                                                    <li class="b-goods-1__list-item">Audio Controls on Steering Wheel
+                                                    </li>
+                                                    <li class="b-goods-1__list-item">Power Windows</li>
+                                                    <li class="b-goods-1__list-item">Daytime Running Lights</li>
+                                                    <li class="b-goods-1__list-item">Cruise Control, ABS</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
                         {% endfor %}
                     </div>
                     <!-- end .goods-group-2-->
+                    <ul class="pagination text-center">
+                        {% if cars.has_previous %}
+                            <li>
+                                <a href="?page={{ cars.previous_page_number }}">
+                                    <i class="icon fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="disabled">
+                                <a href="?page={{ i }}">
+                                    <i class="icon fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for i in cars.paginator.page_range %}
+                            {% if cars.number == i %}
+                                <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if cars.has_next %}
+                            <li><a href="?page={{ cars.next_page_number }}"><i
+                                    class="icon fa fa-angle-double-right"></i></a></li>
+                        {% else %}
+                            <li class="disabled"><a href="?page={{ i }}"><i
+                                    class="icon fa fa-angle-double-right"></i></a></li>
+                        {% endif %}
+                    </ul>
                 </main>
                 <!-- end .l-main-content-->
             </div>
@@ -93,7 +131,7 @@
                         <div class="b-filter-2__inner">
                             <div class="b-filter-2__group">
                                 <div class="b-filter-2__group-title">keyword</div>
-                                <input class="form-control" type="text" placeholder="Keyword..." />
+                                <input class="form-control" type="text" placeholder="Keyword..."/>
                             </div>
                             <div class="b-filter-2__group">
                                 <div class="b-filter-2__group-title">Vehicle Type</div>
@@ -148,7 +186,10 @@
                                 <div class="ui-filter-slider">
                                     <div id="slider-price"></div>
                                     <div class="ui-filter-slider__info">
-                                        <div class="ui-filter-slider__label">Price Range:</div><span class="ui-filter-slider__current" id="slider-snap-value-lower"></span>-<span class="ui-filter-slider__current" id="slider-snap-value-upper"></span>
+                                        <div class="ui-filter-slider__label">Price Range:</div>
+                                        <span class="ui-filter-slider__current"
+                                              id="slider-snap-value-lower"></span>-<span
+                                            class="ui-filter-slider__current" id="slider-snap-value-upper"></span>
                                     </div>
                                 </div>
                             </div>
@@ -156,33 +197,46 @@
                                 <div class="b-filter-2__group-title">Body style</div>
                                 <div class="b-filter-type-2">
                                     <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typePickup" type="checkbox" />
-                                        <label class="b-filter-type-2__label" for="typePickup"><i class="b-filter-type-2__icon flaticon-pick-up"></i><span class="b-filter-type-2__title">PICKUP</span>
+                                        <input class="b-filter-type-2__input" id="typePickup" type="checkbox"/>
+                                        <label class="b-filter-type-2__label" for="typePickup"><i
+                                                class="b-filter-type-2__icon flaticon-pick-up"></i><span
+                                                class="b-filter-type-2__title">PICKUP</span>
                                         </label>
                                     </div>
                                     <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeSuv" type="checkbox" />
-                                        <label class="b-filter-type-2__label" for="typeSuv"><i class="b-filter-type-2__icon flaticon-car-of-hatchback-model"></i><span class="b-filter-type-2__title">SUV</span>
+                                        <input class="b-filter-type-2__input" id="typeSuv" type="checkbox"/>
+                                        <label class="b-filter-type-2__label" for="typeSuv"><i
+                                                class="b-filter-type-2__icon flaticon-car-of-hatchback-model"></i><span
+                                                class="b-filter-type-2__title">SUV</span>
                                         </label>
                                     </div>
                                     <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeCoupe" type="checkbox" />
-                                        <label class="b-filter-type-2__label" for="typeCoupe"><i class="b-filter-type-2__icon flaticon-coupe-car"></i><span class="b-filter-type-2__title">coupe</span>
+                                        <input class="b-filter-type-2__input" id="typeCoupe" type="checkbox"/>
+                                        <label class="b-filter-type-2__label" for="typeCoupe"><i
+                                                class="b-filter-type-2__icon flaticon-coupe-car"></i><span
+                                                class="b-filter-type-2__title">coupe</span>
                                         </label>
                                     </div>
                                     <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeConvertible" type="checkbox" checked="checked" />
-                                        <label class="b-filter-type-2__label" for="typeConvertible"><i class="b-filter-type-2__icon flaticon-cabrio-car"></i><span class="b-filter-type-2__title">CONVERTIBLE</span>
+                                        <input class="b-filter-type-2__input" id="typeConvertible" type="checkbox"
+                                               checked="checked"/>
+                                        <label class="b-filter-type-2__label" for="typeConvertible"><i
+                                                class="b-filter-type-2__icon flaticon-cabrio-car"></i><span
+                                                class="b-filter-type-2__title">CONVERTIBLE</span>
                                         </label>
                                     </div>
                                     <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeSedan" type="checkbox" />
-                                        <label class="b-filter-type-2__label" for="typeSedan"><i class="b-filter-type-2__icon flaticon-sedan-car-model"></i><span class="b-filter-type-2__title">sedan</span>
+                                        <input class="b-filter-type-2__input" id="typeSedan" type="checkbox"/>
+                                        <label class="b-filter-type-2__label" for="typeSedan"><i
+                                                class="b-filter-type-2__icon flaticon-sedan-car-model"></i><span
+                                                class="b-filter-type-2__title">sedan</span>
                                         </label>
                                     </div>
                                     <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeMinicar" type="checkbox" />
-                                        <label class="b-filter-type-2__label" for="typeMinicar"><i class="b-filter-type-2__icon flaticon-car-1"></i><span class="b-filter-type-2__title">MINICAR</span>
+                                        <input class="b-filter-type-2__input" id="typeMinicar" type="checkbox"/>
+                                        <label class="b-filter-type-2__label" for="typeMinicar"><i
+                                                class="b-filter-type-2__icon flaticon-car-1"></i><span
+                                                class="b-filter-type-2__title">MINICAR</span>
                                         </label>
                                     </div>
                                 </div>
@@ -190,18 +244,24 @@
                             <div class="b-filter-2__group">
                                 <div class="b-filter-2__group-title">TRANSMISSION</div>
                                 <div class="checkbox-group">
-                                    <input class="forms__check hidden" id="check-1" type="checkbox" />
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-1">4 Speed Automatic</label>
-                                    <input class="forms__check hidden" id="check-2" type="checkbox" />
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-2">4 Speed Manual</label>
-                                    <input class="forms__check hidden" id="check-3" type="checkbox" checked="checked" />
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-3">5 Speed Automatic</label>
-                                    <input class="forms__check hidden" id="check-4" type="checkbox" />
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-4">5 Speed Manual</label>
-                                    <input class="forms__check hidden" id="check-5" type="checkbox" checked="checked" />
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-5">6-Speed Semi-Auto</label>
-                                    <input class="forms__check hidden" id="check-6" type="checkbox" />
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-6">6-Speed Manual</label>
+                                    <input class="forms__check hidden" id="check-1" type="checkbox"/>
+                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-1">4
+                                        Speed Automatic</label>
+                                    <input class="forms__check hidden" id="check-2" type="checkbox"/>
+                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-2">4
+                                        Speed Manual</label>
+                                    <input class="forms__check hidden" id="check-3" type="checkbox" checked="checked"/>
+                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-3">5
+                                        Speed Automatic</label>
+                                    <input class="forms__check hidden" id="check-4" type="checkbox"/>
+                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-4">5
+                                        Speed Manual</label>
+                                    <input class="forms__check hidden" id="check-5" type="checkbox" checked="checked"/>
+                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-5">6-Speed
+                                        Semi-Auto</label>
+                                    <input class="forms__check hidden" id="check-6" type="checkbox"/>
+                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-6">6-Speed
+                                        Manual</label>
                                 </div>
                             </div>
                         </div>

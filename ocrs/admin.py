@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car, Order, Brands
+from .models import Car, Order, Brands, Specifications
 # Register your models here.
 
 
@@ -20,6 +20,12 @@ class BrandAdmin(admin.ModelAdmin):
     list_filter = ("segment",)
 
 
+class SpecificationsAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+
+
+
 admin.site.register(Car, CarAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Brands, BrandAdmin)
+admin.site.register(Specifications, SpecificationsAdmin)

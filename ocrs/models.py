@@ -31,6 +31,9 @@ class Brands(models.Model):
         return self.brand_name
 
 
+class Specifications(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True, db_index=True)
+
 
 class Car(models.Model):
     image = models.ImageField(upload_to=uploaded_location,
@@ -49,6 +52,9 @@ class Car(models.Model):
     like = models.IntegerField(default=0)
 
     booked = models.BooleanField(default=False)
+
+    specifications = models.ManyToManyField(Specifications, blank=True)
+    # указываем модель С которой связываем, указываем модель ЧЕРЕЗ которую связываем
 
     class Meta:
         verbose_name = "Машину"
@@ -85,4 +91,3 @@ class FeedbackMsg(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
     message = tinymce_models.HTMLField(max_length=7000, blank=True, null=True, db_index=True)
-

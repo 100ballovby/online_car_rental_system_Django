@@ -33,7 +33,7 @@ def car_list(request):
             Q(num_of_seats__icontains=query)
         )
     # пагинация
-    paginator = Paginator(cars, 5)  # отображаем по 5 машин на странице
+    paginator = Paginator(cars, 10)  # отображаем по 5 машин на странице
     page = request.GET.get('page')
     try:
         cars = paginator.page(page)
