@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Car, Order, Brands, Specifications
+from django.forms import CheckboxSelectMultiple
+from django.db import models
 # Register your models here.
 
 
@@ -7,6 +9,9 @@ class CarAdmin(admin.ModelAdmin):
     list_display = ("car_name", "cost_per_day", "image", "booked",)
     list_editable = ("cost_per_day",)
     list_filter = ("cost_per_day", "booked",)
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
 
 class OrderAdmin(admin.ModelAdmin):

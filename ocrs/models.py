@@ -33,6 +33,12 @@ class Brands(models.Model):
 
 class Specifications(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True, db_index=True)
+    class Meta:
+        verbose_name = 'Фишку'
+        verbose_name_plural = 'Фишки'
+
+    def __str__(self):
+        return self.name
 
 
 class Car(models.Model):

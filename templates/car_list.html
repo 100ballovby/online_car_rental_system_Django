@@ -72,20 +72,20 @@
                                         <span class="b-goods-1__price_th text-primary visible-th">${{ car.cost_per_day }}/day</span>
                                         </span>
 
-                                        <div class="b-goods-1__section hidden-th">
-                                            <h3 class="b-goods-1__title" data-toggle="collapse" data-target="#list-1">
-                                                specifications</h3>
-                                            <div class="collapse in" id="list-1">
-                                                <ul class="b-goods-1__list list list-mark-5">
-                                                    <li class="b-goods-1__list-item">Engine DOHC 24-valve V-6</li>
-                                                    <li class="b-goods-1__list-item">Audio Controls on Steering Wheel
-                                                    </li>
-                                                    <li class="b-goods-1__list-item">Power Windows</li>
-                                                    <li class="b-goods-1__list-item">Daytime Running Lights</li>
-                                                    <li class="b-goods-1__list-item">Cruise Control, ABS</li>
-                                                </ul>
+                                        {% if car.specifications.all %}
+                                            <div class="b-goods-1__section hidden-th">
+                                                <h3 class="b-goods-1__title" data-toggle="collapse"
+                                                    data-target="#list-1">
+                                                    specifications</h3>
+                                                <div class="collapse in" id="list-1">
+                                                    <ul class="b-goods-1__list list list-mark-5">
+                                                        {% for spec in car.specifications.all %}
+                                                            <li class="b-goods-1__list-item">{{ spec }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </section>
