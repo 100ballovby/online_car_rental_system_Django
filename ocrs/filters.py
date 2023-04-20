@@ -6,11 +6,10 @@ from django import forms
 class CarFilter(df.FilterSet):
     class Meta:
         model = Car
-        fields = ('company_name', 'num_of_seats',
-                  'cost_per_day',)
+        fields = ('car_name', 'company_name',)
         widgets = {
             'company_name': forms.Select(
-                attrs={'class': 'form-select'}
+                attrs={'class': 'selectpicker'}
             )
         }
 

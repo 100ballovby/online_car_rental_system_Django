@@ -14,5 +14,6 @@ urlpatterns = [
     path('newcar/', views.new_car, name="new_car"),
     path('contacts/', views.contacts, name="contacts"),
     path('popular_cars/', views.popular_cars, name="popular_cars"),
-    path('like/<int:car_id>/', views.like_update, name="like")
+    path('like/<int:car_id>/', views.like_update, name="like"),
+    path('contacts', views.contacts, name="contacts"),
 ]

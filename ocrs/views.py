@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q  # работа с поисковыми запросами в Django
-from .models import Car, Order, FeedbackMsg
+from .models import Car, Order, FeedbackMsg, Brands
 from .filters import CarFilter
 from .forms import CarForm, OrderForm, FeedbackForm
 from promo.models import PromoBlock
@@ -20,17 +20,19 @@ def home(request):
 
 def car_list(request):
     cars = Car.objects.order_by('-booked')
+    brands = Brands.objects.order_by('brand_name')
 
-    cars_filter = CarFilter(request.GET, queryset=cars)  # фильтровать список cars формой с методом get
-    cars = cars_filter.qs
+    q = request.GET.get('q')
+    brand = request.GET.get('brand')
+    model = request.GET.get('model')
+    price_lower = request.GET.get('price_lower')
+    price_upper = request.GET.get('price_upper')
 
-    query = request.GET.get('q')  # забираем запрос от формы с методом отправки GET
-    if query:  # если запрос состоялся
+    if q:  # если запрос состоялся
         cars = cars.filter(
-            Q(car_name__icontains=query),
-            Q(company_name__icontains=query),
-            Q(cost_per_day__icontains=query),
-            Q(num_of_seats__icontains=query)
+            Q(car_name__icontains=model),
+            Q(company_name__icontains=brand),
+            Q(cost_per_day__lte=price_upper)
         )
     # пагинация
     paginator = Paginator(cars, 10)  # отображаем по 5 машин на странице
@@ -43,7 +45,8 @@ def car_list(request):
         cars = paginator.page(paginator.num_pages)  # перемещаем его на последнюю страницу с машинами
     return render(request, "car_list.html", {'title': 'Cars for rent',
                                              'cars': cars,
-                                             'filter': cars_filter})
+                                             'brands': brands,
+                                             'filter': q})
 
 
 def create_order(request):
@@ -142,3 +145,7 @@ def like_update(request, car_id=None):
 def popular_cars(request):
     popular = Car.objects.order_by('-like')
     return render(request, "popular_cars.html", {"popular": popular})
+
+
+def contacts(request):
+    return render(request, "contacts.html")

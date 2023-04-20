@@ -126,7 +126,8 @@
             </div>
             <div class="col-md-3 col-md-pull-9">
                 <aside class="l-sidebar">
-                    <form class="b-filter-2 bg-grey">
+                    <form class="b-filter-2 bg-grey" method="POST">
+                        {% csrf_token %}
                         <h3 class="b-filter-2__title">search options</h3>
                         <div class="b-filter-2__inner">
                             <div class="b-filter-2__group">
@@ -134,53 +135,22 @@
                                 <input class="form-control" type="text" placeholder="Keyword..."/>
                             </div>
                             <div class="b-filter-2__group">
-                                <div class="b-filter-2__group-title">Vehicle Type</div>
-                                <select class="selectpicker" data-width="100%">
-                                    <option>All Types</option>
-                                    <option>Type 1</option>
-                                    <option>Type 2</option>
-                                    <option>Type 3</option>
-                                </select>
-                            </div>
-                            <div class="b-filter-2__group">
-                                <div class="b-filter-2__group-title">Make</div>
-                                <select class="selectpicker" data-width="100%">
-                                    <option>All Makes</option>
-                                    <option>Make 1</option>
-                                    <option>Make 2</option>
+                                <div class="b-filter-2__group-title">Brand</div>
+                                <select name="brand" class="selectpicker" data-width="100%">
+                                    {% for brand in brands %}
+                                        <option value="{{ brand }}">{{ brand }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="b-filter-2__group">
                                 <div class="b-filter-2__group-title">Model</div>
-                                <select class="selectpicker" data-width="100%">
-                                    <option>All Models</option>
-                                    <option>Model 1</option>
-                                    <option>Model 2</option>
-                                    <option>Model 3</option>
+                                <select name="model" class="selectpicker" data-width="100%">
+                                    {% for car in cars %}
+                                        <option value="{{ car.car_name }}">{{ car.car_name }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
-                            <div class="b-filter-2__group">
-                                <div class="b-filter-2__group-title">Model Year</div>
-                                <select class="selectpicker" data-width="100%">
-                                    <option>Min Year</option>
-                                    <option>Year 1</option>
-                                    <option>Year 2</option>
-                                </select>
-                                <select class="selectpicker" data-width="100%">
-                                    <option>Max Year</option>
-                                    <option>Year 1</option>
-                                    <option>Year 2</option>
-                                </select>
-                            </div>
-                            <div class="b-filter-2__group">
-                                <div class="b-filter-2__group-title">fuel type</div>
-                                <select class="selectpicker" data-width="100%">
-                                    <option>All Fuel Types</option>
-                                    <option>Type 1</option>
-                                    <option>Type 2</option>
-                                    <option>Type 3</option>
-                                </select>
-                            </div>
+
                             <div class="b-filter-2__group">
                                 <div class="b-filter-2__group-title">Filter Price</div>
                                 <div class="ui-filter-slider">
@@ -193,77 +163,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="b-filter-2__group">
-                                <div class="b-filter-2__group-title">Body style</div>
-                                <div class="b-filter-type-2">
-                                    <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typePickup" type="checkbox"/>
-                                        <label class="b-filter-type-2__label" for="typePickup"><i
-                                                class="b-filter-type-2__icon flaticon-pick-up"></i><span
-                                                class="b-filter-type-2__title">PICKUP</span>
-                                        </label>
-                                    </div>
-                                    <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeSuv" type="checkbox"/>
-                                        <label class="b-filter-type-2__label" for="typeSuv"><i
-                                                class="b-filter-type-2__icon flaticon-car-of-hatchback-model"></i><span
-                                                class="b-filter-type-2__title">SUV</span>
-                                        </label>
-                                    </div>
-                                    <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeCoupe" type="checkbox"/>
-                                        <label class="b-filter-type-2__label" for="typeCoupe"><i
-                                                class="b-filter-type-2__icon flaticon-coupe-car"></i><span
-                                                class="b-filter-type-2__title">coupe</span>
-                                        </label>
-                                    </div>
-                                    <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeConvertible" type="checkbox"
-                                               checked="checked"/>
-                                        <label class="b-filter-type-2__label" for="typeConvertible"><i
-                                                class="b-filter-type-2__icon flaticon-cabrio-car"></i><span
-                                                class="b-filter-type-2__title">CONVERTIBLE</span>
-                                        </label>
-                                    </div>
-                                    <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeSedan" type="checkbox"/>
-                                        <label class="b-filter-type-2__label" for="typeSedan"><i
-                                                class="b-filter-type-2__icon flaticon-sedan-car-model"></i><span
-                                                class="b-filter-type-2__title">sedan</span>
-                                        </label>
-                                    </div>
-                                    <div class="b-filter-type-2__item">
-                                        <input class="b-filter-type-2__input" id="typeMinicar" type="checkbox"/>
-                                        <label class="b-filter-type-2__label" for="typeMinicar"><i
-                                                class="b-filter-type-2__icon flaticon-car-1"></i><span
-                                                class="b-filter-type-2__title">MINICAR</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="b-filter-2__group">
-                                <div class="b-filter-2__group-title">TRANSMISSION</div>
-                                <div class="checkbox-group">
-                                    <input class="forms__check hidden" id="check-1" type="checkbox"/>
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-1">4
-                                        Speed Automatic</label>
-                                    <input class="forms__check hidden" id="check-2" type="checkbox"/>
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-2">4
-                                        Speed Manual</label>
-                                    <input class="forms__check hidden" id="check-3" type="checkbox" checked="checked"/>
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-3">5
-                                        Speed Automatic</label>
-                                    <input class="forms__check hidden" id="check-4" type="checkbox"/>
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-4">5
-                                        Speed Manual</label>
-                                    <input class="forms__check hidden" id="check-5" type="checkbox" checked="checked"/>
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-5">6-Speed
-                                        Semi-Auto</label>
-                                    <input class="forms__check hidden" id="check-6" type="checkbox"/>
-                                    <label class="forms__label forms__label-check forms__label-check-1" for="check-6">6-Speed
-                                        Manual</label>
-                                </div>
-                            </div>
+                            <input type="submit" value="filter">
                         </div>
                     </form>
                     <!-- end .b-filter-->
