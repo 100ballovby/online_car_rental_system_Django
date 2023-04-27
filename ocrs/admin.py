@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car, Order, Brands, Specifications
+from .models import Car, Order, Brands, Specifications, FeedbackMsg
 from django.forms import CheckboxSelectMultiple
 from django.db import models
 # Register your models here.
@@ -29,8 +29,13 @@ class SpecificationsAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
 
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ("name", "email", "checked",)
+    list_filter = ("checked",)
+
 
 admin.site.register(Car, CarAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Brands, BrandAdmin)
 admin.site.register(Specifications, SpecificationsAdmin)
+admin.site.register(FeedbackMsg, FeedbackAdmin)

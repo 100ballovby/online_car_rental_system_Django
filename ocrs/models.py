@@ -5,7 +5,6 @@ from django import forms
 
 # Create your models here.
 
-
 def uploaded_location(inst, f_name):
     return f"{inst.car_name}/{f_name}"
 
@@ -97,3 +96,8 @@ class FeedbackMsg(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
     message = tinymce_models.HTMLField(max_length=7000, blank=True, null=True, db_index=True)
+    checked = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'обратную связь'
+        verbose_name_plural = 'Обратная связь'

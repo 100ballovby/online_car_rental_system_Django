@@ -1,5 +1,6 @@
 from django import forms
 from .models import Car, Order, FeedbackMsg
+from tinymce.widgets import TinyMCE
 
 
 class CarForm(forms.ModelForm):
@@ -31,4 +32,9 @@ class OrderForm(forms.ModelForm):
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = FeedbackMsg
-        fields = '__all__'
+        exclude = ("checked",)
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name...'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'name@example.com'}),
+            'contact': TinyMCE(attrs={'cols': 100, 'rows': 20})
+        }

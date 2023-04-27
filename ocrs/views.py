@@ -147,5 +147,4 @@ def popular_cars(request):
     return render(request, "popular_cars.html", {"popular": popular})
 
 
-def contacts(request):
-    return render(request, "contacts.html")
+
