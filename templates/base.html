@@ -35,27 +35,16 @@
     <a class="navbar-brand scroll" href="{% url 'home' %}">
         <img class="normal-logo img-resonsive visible-xs visible-sm" src="{% static 'assets/media/general/logo.png' %}"
              alt="logo"/> <!-- мобильный и планшетный логотип -->
-        <img class="scroll-logo img-resonsive hidden-xs hidden-sm" src="{% static 'assets/media/general/logo-dark.png' %}"
+        <img class="scroll-logo img-resonsive hidden-xs hidden-sm"
+             src="{% static 'assets/media/general/logo-dark.png' %}"
              alt="logo"/> <!-- десктоп логотип -->
     </a>
     <ul class="nav navbar-nav">
-        <li>
-            <h4><a href="">Mobile sidebar</a></h4>
-        </li>
-        <li><a href="{% url 'home' %}">Home<b class="caret"></b></a>
-        </li>
-        <li><a href="repair-shop.html">Repair Shop</a>
+        <li><a href="{% url 'home' %}">Home</a>
         </li>
         <li><a href="{% url 'car_list' %}">Car Rental</a>
         </li>
-        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Pages<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="car-details.html" tabindex="-1">Car details</a>
-                </li>
-                <li><a href="typography.html" tabindex="-1">Typography</a>
-                </li>
-            </ul>
-        </li>
+        <li><a href="{% url 'contacts' %}">Contacts</a></li>
     </ul>
 </div>
 
@@ -162,10 +151,9 @@
                         <ul class="yamm main-menu nav navbar-nav">
                             <li><a href="{% url 'home' %}">Home</a>
                             </li>
-                            <li><a href="repair-shop.html">Repair Shop</a>
-                            </li>
                             <li><a href="{% url 'car_list' %}">Car Rental</a>
                             </li>
+                            <li><a href="{% url 'contacts' %}">Contacts</a></li>
                         </ul>
                     </div>
                 </div>

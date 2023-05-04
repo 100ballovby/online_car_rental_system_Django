@@ -5,13 +5,13 @@ from .forms import UserLoginForm, UserRegisterForm
 
 
 def login_view(request):
-    form = UserLoginForm(request.POST or None)
+    form = UserLoginForm(request.POST)
     if form.is_valid():
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
-        user = authenticate(username=username,
+        user = authenticate(request, username=username,
                             password=password)
-        if not request.user.is_staff:
+        if user is not None:
             login(request, user)  # логиним
             return redirect("home")
     return render(request, "form.html", {"form": form,

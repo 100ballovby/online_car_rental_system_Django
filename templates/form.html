@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="section-title-page area-bg area-bg_dark area-bg_op_70">
+        <div class="area-bg__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="b-title-page bg-primary_a">{{ title }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="container form-signin w-100 m-auto">
+        <form method="post">
+            {% csrf_token %}
+            <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Please {{ title }}</h1>
+
+            {% for field in form %}
+                <div class="form-floating">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <input class="w-100 btn btn-lg btn-primary" type="submit" value="{{ title }}">
+            <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
+        </form>
+    </main>
+{% endblock %}
