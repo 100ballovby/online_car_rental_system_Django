@@ -68,7 +68,7 @@
                                                     href="{% url 'car_detail' name=car.car_name %}">{{ car.company_name }} {{ car.car_name }}</a>
                                             </h2>
                                         </div>
-                                        <div class="b-goods-1__info">{{ car.content }}</div>
+                                        <div class="b-goods-1__info">{{ car.content|safe }}</div>
                                         <span class="b-goods-1__price_th text-primary visible-th">${{ car.cost_per_day }}/day</span>
                                         </span>
 
@@ -86,6 +86,10 @@
                                                 </div>
                                             </div>
                                         {% endif %}
+                                        <a href="" class="btn btn-primary">Rent</a>
+                                        {% if user.is_staff %}
+                                            <a href="{% url 'car_edit' car_id=car.id %}" class="btn btn-primary">Edit car</a>
+                                        {% endif %} 
                                     </div>
                                 </div>
                             </section>

@@ -81,18 +81,18 @@ def order_delete(request, order_id=None):
     return redirect('home')
 
 
-def car_detail(request, brand, car_id=None):
-    detail = get_object_or_404(Car, car_id=car_id)
-    return render(request, "car_detail.html", {"detail": detail})
+def car_detail(request, name=None):
+    car = get_object_or_404(Car, car_name=name)
+    return render(request, "car_details.html", { "car": car, "title": "Car Details" })
 
 
 def car_edit(request, car_id=None):
-    query = get_object_or_404(Car, car_id=car_id)
+    query = get_object_or_404(Car, id=car_id)
     form = CarForm(request.POST or None, instance=query)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
+        return redirect('car_list')
     return render(request, "car_edit.html", {"form": form, "title": "Update car info"})
 
 

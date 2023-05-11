@@ -8,12 +8,18 @@ class CarForm(forms.ModelForm):
         model = Car   # модель, на основе которой строится форма
         fields = [
             "image",
-            "car_name",
             "company_name",
             "num_of_seats",
             "cost_per_day",
             "content",
         ]  # поля для формы
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'company_name': forms.Select(attrs={'class': 'form-select form-control'}),
+            'num_of_seats': forms.NumberInput(attrs={'class': 'form-control'}),
+            'cost_per_day': forms.TextInput(attrs={'class': 'form-control'}),
+            'contact': TinyMCE(attrs={'cols': 100, 'rows': 20})
+        }
 
 
 class OrderForm(forms.ModelForm):
