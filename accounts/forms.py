@@ -14,8 +14,6 @@ class UserLoginForm(forms.ModelForm):
 
 
 class UserRegisterForm(forms.ModelForm):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
         fields = [
@@ -23,3 +21,8 @@ class UserRegisterForm(forms.ModelForm):
             "email",
             "password",
         ]
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control'})
+        }

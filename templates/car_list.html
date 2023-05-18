@@ -65,7 +65,9 @@
                                                                           href="{% url 'like' car_id=car.id %}"><i
                                                 class="icon fa fa-heart-o"> {{ car.like }}</i></a>
                                             <h2 class="b-goods-1__name"><a
-                                                    href="{% url 'car_detail' name=car.car_name %}">{{ car.company_name }} {{ car.car_name }}</a>
+                                                    href="{% url 'car_detail' name=car.car_name %}">{{ car.company_name }} {{ car.car_name }}
+                                            {% if car.booked %} <span class="badge bg-warning">Booked</span> {% endif %}
+                                            </a>
                                             </h2>
                                         </div>
                                         <div class="b-goods-1__info">{{ car.content|safe }}</div>
@@ -86,7 +88,7 @@
                                                 </div>
                                             </div>
                                         {% endif %}
-                                        <a href="" class="btn btn-primary">Rent</a>
+                                        <a href="{% url 'create_order' %}" class="btn btn-primary {% if car.booked %}disabled{% endif %}">Rent</a>
                                         {% if user.is_staff %}
                                             <a href="{% url 'car_edit' car_id=car.id %}" class="btn btn-primary">Edit car</a>
                                         {% endif %} 

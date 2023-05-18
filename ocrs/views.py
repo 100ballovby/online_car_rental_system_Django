@@ -19,7 +19,7 @@ def home(request):
 
 
 def car_list(request):
-    cars = Car.objects.order_by('-booked')
+    cars = Car.objects.order_by('-like').order_by('-booked')
     brands = Brands.objects.order_by('brand_name')
 
     q = request.GET.get('q')
@@ -135,16 +135,9 @@ def contacts(request):
 
 
 def like_update(request, car_id=None):
-    new = Car.objects.order_by('-id')
-    like_count = get_object_or_404(Car, car_id=car_id)
+    like_count = get_object_or_404(Car, id=car_id)
     like_count.like += 1
     like_count.save()
-    return render(request, "new_car.html", {"car": new})
-
-
-def popular_cars(request):
-    popular = Car.objects.order_by('-like')
-    return render(request, "popular_cars.html", {"popular": popular})
-
+    return redirect('car_list')
 
 

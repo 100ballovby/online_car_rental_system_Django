@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="section-title-page area-bg area-bg_dark area-bg_op_70">
+        <div class="area-bg__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="b-title-page bg-primary_a">{{ title }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% block breadcrumbs %}
+                        <ol class="breadcrumb">
+                            <li><a href="{% url 'home' %}"><i class="icon fa fa-home"></i></a>
+                            </li>
+                            <li class="active">{% if title %} {{ title }} {% endif %}</li>
+                        </ol>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="b-filter-2__inner">
+
+                        {% for field in form %}
+                            <div class="b-filter-2__group">
+                            <label for="name" class="b-filter-2__group-title">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+
+                        <input type="submit" value="Send" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
