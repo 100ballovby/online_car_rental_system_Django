@@ -88,7 +88,7 @@
                                                 </div>
                                             </div>
                                         {% endif %}
-                                        <a href="{% url 'create_order' %}" class="btn btn-primary {% if car.booked %}disabled{% endif %}">Rent</a>
+                                        <a href="{% url 'create_order' car_id=car.id %}" class="btn btn-primary {% if car.booked %}disabled{% endif %}">Rent</a>
                                         {% if user.is_staff %}
                                             <a href="{% url 'car_edit' car_id=car.id %}" class="btn btn-primary">Edit car</a>
                                         {% endif %} 

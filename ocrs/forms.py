@@ -26,13 +26,15 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = [
-            'car_name',
-            'employee_name',
-            'cell_no',
             'address',
             'start_date',
             'end_date',
         ]
+        widgets ={
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'start_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'end_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
+        }
 
 
 class FeedbackForm(forms.ModelForm):

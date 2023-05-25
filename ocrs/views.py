@@ -49,7 +49,8 @@ def car_list(request):
                                              'filter': q})
 
 
-def create_order(request):
+def create_order(request, car_id=None):
+    car = get_object_or_404(Car, pk=car_id)
     form = OrderForm(request.POST or None)
     if form.is_valid():
         instance = form.save(commit=False)
