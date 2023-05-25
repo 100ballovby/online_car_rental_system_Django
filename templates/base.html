@@ -109,7 +109,7 @@
                             <li><a href="{% url 'car_list' %}">Car Rental</a>
                             </li>
                             <li><a href="{% url 'contacts' %}">Contacts</a></li>
-                            {% if user.is_authecnticated %}
+                            {% if user.is_authenticated %}
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
                             {% else %}
                                 <li><a href="{% url 'login' %}">Login</a></li>
@@ -219,9 +219,7 @@
 <script src="{% static 'assets/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
 <!-- Pop-up window-->
 <script src="{% static 'assets/plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
-<!-- Mail scripts-->
-<script src="{% static 'assets/plugins/jqBootstrapValidation.js' %}"></script>
-<script src="{% static 'assets/plugins/contact_me.js' %}"></script>
+
 <!-- Filter and sorting images-->
 <script src="{% static 'assets/plugins/isotope/isotope.pkgd.min.js' %}"></script>
 <script src="{% static 'assets/plugins/isotope/imagesLoaded.js' %}"></script>

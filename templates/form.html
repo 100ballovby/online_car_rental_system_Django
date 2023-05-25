@@ -29,5 +29,10 @@
             <input class="w-100 btn btn-lg btn-primary" type="submit" value="{{ title }}">
             <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
         </form>
+
+    {% if form.errors %}
+        <div class="alert alert-danger" style="font-size: 1.4em">{{ form.non_field_errors }}</div>
+    {% endif %}
+
     </main>
 {% endblock %}
