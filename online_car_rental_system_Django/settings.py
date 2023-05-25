@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'tinymce',
+    'widget_tweaks',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -158,5 +159,9 @@ TINYMCE_DEFAULT_CONFIG = {
     "language": "en_US",  # To force a specific language instead of the Django current language.
     "skin": "oxide-dark",
 }
+
+# django login system
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 

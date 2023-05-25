@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('ocrs.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='form.html',
                                                 redirect_authenticated_user=True,
-                                                extra_content={'title': 'Login'}), name='login'),
+                                                extra_context={'title': 'Login'}), name='login'),
     path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
 ]
