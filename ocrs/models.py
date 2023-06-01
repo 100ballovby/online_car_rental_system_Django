@@ -80,6 +80,7 @@ class Order(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     closed = models.BooleanField(default=False)
+    price = models.IntegerField()
 
     class Meta:
         verbose_name = "Заказ"

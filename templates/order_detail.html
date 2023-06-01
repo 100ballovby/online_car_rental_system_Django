@@ -31,11 +31,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-               <h1>{{ detail.car_name }}</h1>
-                <img src="{{ detail.car_name.image }}" alt="{{ detail.car_name }}">
+                <h1>{{ detail.car_name }}</h1>
+                <img src="{{ detail.car_name.image.url }}" alt="{{ detail.car_name }}">
                 <p>Start date: {{ detail.start_date }}</p>
                 <p>End date: {{ detail.end_date }}</p>
-                <p>Price you will be charged for: ${{ price }}</p>
+                <p>Price you will be charged for: ${{ detail.price }}</p>
             </div>
         </div>
     </div>

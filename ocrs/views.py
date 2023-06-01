@@ -55,6 +55,9 @@ def create_order(request, car_id=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.car_name = car
+        delta = datetime.date(instance.end_date) - datetime.date(instance.start_date)
+        instance.price = delta.days * int(instance.car_name.cost_per_day)
+
         instance.save()
 
         car.booked = True
@@ -66,9 +69,7 @@ def create_order(request, car_id=None):
 
 def order_detail(request, order_id=None):
     order = get_object_or_404(Order, id=order_id)
-    delta = datetime.date(order.end_date) - datetime.date(order.start_date)
-    price = delta.days * int(order.car_name.cost_per_day)
-    return render(request, "order_detail.html", {"detail": order, 'price': price})
+    return render(request, "order_detail.html", {"detail": order})
 
 
 def order_update(request, order_id=None):
