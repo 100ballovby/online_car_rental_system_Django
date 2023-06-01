@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q  # работа с поисковыми запросами в Django
 from .models import Car, Order, FeedbackMsg, Brands
@@ -49,9 +50,26 @@ def car_list(request):
                                              'filter': q})
 
 
+@login_required
 def create_order(request, car_id=None):
+    """
+    This function creates a new order for a car.
+
+    Args:
+        request: The HTTP request object.
+        car_id: The ID of the car to be ordered.
+
+    Returns:
+        A redirect to the order detail page.
+    """
+
+    # Get the car object.
     car = get_object_or_404(Car, pk=car_id)
+
+    # Create an OrderForm instance from the request POST data.
     form = OrderForm(request.POST or None)
+
+    # If the form is valid, save the order and mark the car as booked.
     if form.is_valid():
         instance = form.save(commit=False)
         instance.car_name = car
@@ -62,11 +80,15 @@ def create_order(request, car_id=None):
 
         car.booked = True
         car.save()
+
         return redirect('order_detail')
+
+    # Otherwise, render the create order template with the form.
     return render(request, "create_order.html", {"title": "Create order",
                                                  "form": form})
 
 
+@login_required
 def order_detail(request, order_id=None):
     order = get_object_or_404(Order, id=order_id)
     return render(request, "order_detail.html", {"detail": order})
