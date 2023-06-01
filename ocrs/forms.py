@@ -32,8 +32,8 @@ class OrderForm(forms.ModelForm):
         ]
         widgets ={
             'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'start_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
-            'end_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'start_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
         }
 
 

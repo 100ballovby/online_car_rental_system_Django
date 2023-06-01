@@ -54,15 +54,21 @@ def create_order(request, car_id=None):
     form = OrderForm(request.POST or None)
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.car_name = car
         instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
+
+        car.booked = True
+        car.save()
+        return redirect('order_detail')
     return render(request, "create_order.html", {"title": "Create order",
                                                  "form": form})
 
 
 def order_detail(request, order_id=None):
-    detail = get_object_or_404(Order, order_id=order_id)
-    return render(request, "order_detail.html", {"detail": detail})
+    order = get_object_or_404(Order, id=order_id)
+    delta = datetime.date(order.end_date) - datetime.date(order.start_date)
+    price = delta.days * int(order.car_name.cost_per_day)
+    return render(request, "order_detail.html", {"detail": order, 'price': price})
 
 
 def order_update(request, order_id=None):
